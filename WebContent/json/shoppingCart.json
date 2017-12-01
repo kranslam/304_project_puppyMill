@@ -1,0 +1,13 @@
+{
+  "lab": {
+    "price": 993,
+    "pname": "Labrador Retriever",
+    "quantity": 1
+  },
+  "shiba": {
+    "price": 666.69,
+    "pname": "Shiba Inu",
+    "quantity": 1
+  },
+  "totalamount": 1659.69
+}

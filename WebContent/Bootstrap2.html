@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>Bootstrap Tutorial</title>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<style type="text/css">
+.slide0{
+  background-image: url('images/0.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide1{
+  background-image: url('images/1.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide2{
+  background-image: url('images/2.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide3{
+  background-image: url('images/3.png');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide4{
+  background-image: url('images/4.png');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.carousel-caption h1{
+  font-size: 5.4em;
+  font-family: 'Pacifico', cursive;
+  padding-bottom: .4em;
+}
+.carousel-caption p{
+  font-size: 2em;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom border">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand brandStyle" href="#">Welcome<br>User!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a class="textColor" href="#">Upload</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle textColor" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Logout</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Forgot Username/Password</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">User Profile</a></li>
+                <li><a href="#">Settings</a></li>
+              </ul>
+            </li>
+            <li><a class="textColor" href="#">Advanced Search</a></li>
+          </ul>
+          <div class="pull-right search">
+          <form class="navbar-form navbar-right">
+            <div class="input-group input-group-sm">
+
+              <input type="text" class="form-control" placeholder="Search Files">
+              <span class="input-group-btn"><button class="btn btn-default">Search</button></span>
+            </div>
+            </div>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+
+<div id="theCarousel" class="carousel slide" data-ride="carousel">
+
+  <!-- defining the carousel slides -->
+  <ol class="carousel-indicators">
+    <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#theCarousel" data-slide-to="1"></li>
+    <li data-target="#theCarousel" data-slide-to="2"></li>
+    <li data-target="#theCarousel" data-slide-to="3"></li>
+    <li data-target="#theCarousel" data-slide-to="4"></li>
+  </ol>
+
+  <div class="carousel-inner"><div class="item active"><div class="slide0"><div class="carousel-caption">
+    <h1>First Slide Caption!</h1>
+    <p>Bootstrap is swanky</p>
+    <p><a href="#" class="btn btn-primary btn-sm">This button does nothing lol</a></p>
+  </div></div></div>
+
+
+  <div class="item"><div class="slide1"><div class="carousel-caption">
+    <h1>Second Slide Caption!</h1>
+    <p>Bootstrap is smooth</p>
+  </div></div></div>
+
+
+  <div class="item"><div class="slide2"><div class="carousel-caption">
+    <h1>Third Slide Caption!</h1>
+    <p>Bootstrap is cool</p>
+  </div></div></div>
+
+
+  <div class="item"><div class="slide3"><div class="carousel-caption">
+    <h1>Fourth Slide Caption!</h1>
+    <p>Bootstrap is sweet</p>
+  </div></div></div>
+
+
+  <div class="item"><div class="slide4"><div class="carousel-caption">
+    <h1>Fifth Slide Caption!</h1>
+    <p>Bootstrap is dank</p>
+  </div></div></div></div>
+
+
+<!-- backwards and forwards buttons! -->
+
+  <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#theCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+
+</br>
+<hr>
+
+<!-- Wells create a grey curved background around an element -->
+<div class="container">
+<div class="well well-sm">
+  <p>This text is inside a "Well"!</p>
+</div>
+
+<p>This text is outside the "Well"!</p>
+</div>
+</br>
+<hr>
+<!-- Rounded images -->
+<div class="container">
+  <img src="images/1.jpg" id="picture" class="img-responsive img-rounded pull-left"/>
+
+</div>
+</br>
+<hr>
+<!-- Dropdown Menus -->
+<div class="container">
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle btn-lg" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Favorite City
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu">
+      <li class="dropdown-header">Alberta</li>
+      <li><a href="#">Calgary</a></li>
+      <li class="disabled"><a href="#">Edmonton</a></li>
+      <li><a href="#">Lethbridge</a></li>
+
+      <li role="separator" class="divider"></li>
+      <li class="dropdown-header">British Columbia</li>
+      <li><a href="#">Kelowna</a></li>
+      <li><a href="#">Vancouver</a></li>
+      <li><a href="#">The Hipster Slums</a></li>
+    </ul>
+
+
+  </div>
+
+</div>
+</br>
+<hr>
+<div class="container">
+
+  <div class="input-group input-group-lg">
+
+    <span class="input-group-addon">Your Name</span>
+    <input type="text" class="form-control" placeholder="Full Name">
+
+  </div>
+
+  <div class="input-group input-group-sm">
+
+    <input type="text" class="form-control" placeholder="Full Name">
+    <span class="input-group-btn"><button class="btn btn-default">Enter</button></span>
+
+  </div>
+
+</div>
+</br>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User ID
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Google+</a></li>
+        </ul>
+      </div>
+
+      <input type="text" class="form-control" aria-label="...">
+
+    </div>
+  </div>
+</div>
+</br>
+<hr>
+
+<div class="container">
+  <br>
+  <p>Navigation links using horizontal menu</p>
+
+  <ul class="list-inline">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Phone</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#">Location</a></li>
+      </ul>
+
+    </li>
+    <li><a href="#">Legal</a></li>
+  </ul>
+
+</br>
+<hr>
+
+<p>Navigation links using vertical menus</p>
+
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">About</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contact Us <span class="caret"></span></a>
+
+    <ul class="dropdown-menu">
+      <li><a href="#">Phone</a></li>
+      <li><a href="#">Email</a></li>
+      <li><a href="#">Location</a></li>
+    </ul>
+
+  </li>
+  <li><a href="#">Legal</a></li>
+</ul>
+
+</div>
+</br>
+<hr>
+<div class="container">
+  <ul class="nav nav-pills">
+
+    <li class="active"><a data-toggle="tab" href="#water">Water</a></li>
+    <li><a data-toggle="tab" href="#icedTea">Iced Tea</a></li>
+    <li><a data-toggle="tab" href="#sprite">Sprite</a></li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Coke <span class="caret"></span></a>
+
+      <ul class="dropdown-menu">
+        <li class="disabled"><a data-toggle="tab" href="#dis">This option should be disabled</a></li>
+        <li><a data-toggle="tab" href="#dietCoke">Diet</a></li>
+        <li><a data-toggle="tab" href="#regularCoke">Regular</a></li>
+      </ul>
+
+    </li>
+
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pepsi <span class="caret"></span></a>
+
+      <ul class="dropdown-menu">
+        <li><a data-toggle="tab" href="#dietPepsi">Diet</a></li>
+        <li><a data-toggle="tab" href="#regularPepsi">Regular</a></li>
+      </ul>
+
+    </li>
+
+  </ul>
+
+<div class="tab-content">
+
+  <div id="water" class="tab-pane fade in active"><p>Good ol' refreshing H2O!</p></div>
+  <div id="icedTea" class="tab-pane fade in"><p>Leaf water that's been iced!</p></div>
+  <div id="sprite" class="tab-pane fade in"><p>Tastes vaguely of lemons</p></div>
+  <div id="dis" class="tab-pane fade in"><p>If you see this, something has gone wrong!</p></div>
+  <div id="dietCoke" class="tab-pane fade in"><p>Whatever makes you feel less guilty about ordering that cheeseburger</p></div>
+  <div id="regularCoke" class="tab-pane fade in"><p>A true American drink, poisonous to Communists!</p></div>
+  <div id="dietPepsi" class="tab-pane fade in"><p>Something has gone deeply wrong with your life</p></div>
+  <div id="regularPepsi" class="tab-pane fade in"><p>Offer some to your nearest law enforcement official</p></div>
+
+</div>
+
+
+</div>
+</br>
+<hr>
+<div class="container">
+
+  <nav>
+    <ul class="pagination">
+
+      <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+
+    </ul>
+
+</div>
+</br>
+<hr>
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <div class="thumbnail">
+        <img src="images/doge.jpg" alt="...">
+        <div class="caption">
+          <h3>WOW</h3>
+          <p>Captions go here!</p>
+          <p><a href="#" class="btn btn-primary" role="button" style="margin-bottom:4px;white-space: normal;">You can even put buttons!</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</br>
+<hr>
+<div class="container">
+  <p>Below is a progress bar, update with javascript</p>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+      <!-- Below is for screen reader functionality -->
+      <span class="sr-only">60% Complete</span>
+  </div>
+
+</div>
+</div>
+</br>
+<hr>
+<div class="container">
+
+  <div class="media">
+    <div class="media-left media-top">
+      <a href="#">
+        <img class="media-object" src="images/doge.jpg">
+      </a>
+    </div>
+
+  <div class="media-body">
+
+    <h4 class="media-heading">WOW</h4>
+    <p>doggo apears again</p>
+    <p>where he will show up next?????</p>
+
+  </div>
+</div>
+
+</div>
+</br>
+<hr>
+<div class="container">
+
+  <div class="media">
+    <div class="media-left media-top">
+      <a href="#">
+        <img class="media-object" src="images/doge.jpg">
+      </a>
+    </div>
+
+  <div class="media-body">
+
+    <h4 class="media-heading">WOW</h4>
+    <p>doggo apears again</p>
+    <p>where he will show up next?????</p>
+
+  </div>
+</div>
+
+</div>
+</br>
+<hr>
+<div class="container">
+
+  <div class="media">
+    <div class="media-left media-top">
+      <a href="#">
+        <img class="media-object" src="images/doge.jpg">
+      </a>
+    </div>
+
+  <div class="media-body">
+
+    <h4 class="media-heading">WOW</h4>
+    <p>doggo apears again</p>
+    <p>where he will show up next?????</p>
+
+  </div>
+</div>
+
+</div>
+</br>
+<hr>
+<div class="container">
+
+  <ul class="list-group">
+    <li class="list-group-item disabled">This should be disabled</li>
+    <li class="list-group-item">SEXY SINGLES IN YOUR AREA! <span class="badge">69</span></li>
+    <li class="list-group-item list-group-item-warning">CONGRATULATIONS!!! YOU ARE THE 1000th VISITOR</li>
+    <li class="list-group-item">Click here and find out how to make $22/hr from home</li>
+
+  </ul>
+
+  <a href="#" class="list-group-item">You did this. It's all your fault.</a>
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">Repent for your sins</h4>
+  </a>
+
+  <button type="button" class="list-group=item">ayy bbyy com giv me clicc</button>
+
+</div>
+
+</br>
+</br>
+</br>
+</br>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<!-- Use downloaded version of Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

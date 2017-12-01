@@ -1,0 +1,41 @@
+.description, .buyBtn{
+
+  background-color: white;
+  margin-left: 30px;
+  padding-left: 10px !important;
+  padding-top: 20px;
+
+}
+.buyBtn{
+
+text-align: center;
+
+}
+#buyBtn:link, #buyBtn:visited{
+  text-decoration: none;
+  background-color: #578DDC;
+}
+#buyBtn:hover, #buyBtn:active{
+  background-color: #4383C4;
+
+}
+.buyBtn{
+  background-color: inherit;
+}
+h2{
+  font-weight: bolder;
+}
+.buyBtn h2{
+  color: white;
+  font-weight: bold;
+}
+.comment{
+  padding: 20px 40px;
+  margin: 15px 20px;
+}
+.commentName h3{
+  font-weight: bold;
+}
+.breed{
+  font-weight: bold;
+}

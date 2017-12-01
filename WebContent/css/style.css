@@ -1,0 +1,66 @@
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 150px;
+    height: 150px;
+    padding-top: 0;
+}
+.fillHeight{
+  height: 100%;
+}
+.fillWidth{
+  width: 100%;
+}
+.inheritHeight{
+  height: inherit;
+}
+.inheritWidth{
+  width: inherit;
+}
+.removeFormatting{
+  padding: 0px;
+  margin: 0px;
+}
+#logo {
+  height: 100%;
+}
+#logoContainer{
+  height: 100%;
+}
+#logoSub1{
+  height: 70%;
+}
+#logoSub2{
+  height: 30%;
+}
+#searchBar{
+  width: 100%;
+}
+#searchForm{
+  width: 80%;
+}
+.container{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.centerHorizontal{
+  text-align: center;
+}
+.centerVertical{
+  margin: auto;
+}
+.inlineBlock{
+  display: inline-block;
+}
+
+.example3 .navbar-brand {
+  height: 80px;
+}
+
+.example3 .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.example3 .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}

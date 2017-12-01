@@ -1,0 +1,58 @@
+.dogPhoto{
+
+  background-image: url('../images/heart.jpg');
+  margin: 50px;
+  height: 600px !important;
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+  background-size: cover;
+  border-radius: 30px;
+
+}
+
+.top{
+
+  margin: 0px;
+  height: 80%;
+
+}
+
+.bottom{
+  margin: 0px;
+  height: 10%;
+  vertical-align: text-bottom;
+
+}
+
+.text{
+
+  font-size: 50pt;
+  color: white;
+  text-shadow: 2px 2px purple;
+  font-family: 'Pacifico', cursive;
+
+}
+
+.input-group{
+
+  margin-bottom: 15px;
+
+}
+
+.divider{
+
+  margin: 50px 0px;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.subBtn{
+
+  width: 100%;
+
+}

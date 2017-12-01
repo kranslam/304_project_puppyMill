@@ -1,0 +1,86 @@
+body{
+z-index: -100000000 !important;
+
+}
+.example3 .navbar-brand {
+  height: 150px;
+  z-index: -100 !important;
+}
+
+.example3 .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.example3 .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+.example3{
+z-index: -100 !important;
+
+}
+#navbar{
+  width: 80%;
+}
+.navUL{
+  padding-right: 20px;
+  padding-top: 20px;
+}
+.logo{
+  height: 130px;
+}
+.removeSidePadding{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.removeSideMargins{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.fillHeight{
+  height: 100%;
+}
+.fillWidth{
+  width: 100%;
+}
+.marginAuto{
+  margin: auto;
+}
+.removeFormatting{
+  padding: 0px;
+  margin: 0px;
+}
+.displayInline{
+  float: left;
+  display: inline-block;
+}
+.dogContainer{
+  width: 170px;
+  height: 400px;
+  margin: 25px;
+}
+.pageNav{
+  text-align: center;
+  clear: both;
+}
+.dogImage{
+  height: 200px !important;
+  object-fit: cover;
+}
+.carousel-inner a:link, .carousel-inner a:visited, .carousel-inner a:hover, .carousel-inner a:active{
+  color: white;
+  text-decoration: none;
+}
+.removeMargins{
+  margin: 0px;
+}
+.login{
+  margin: 30%;
+}
+.input-group{
+  margin-bottom: 25px;
+}
+.loginBtn{
+  width: 100%
+}
+

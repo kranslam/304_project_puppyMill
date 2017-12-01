@@ -1,0 +1,16 @@
+h2{
+  font-weight: bolder;
+}
+.comment{
+  padding: 20px 40px;
+  margin: 15px 20px;
+}
+.commentName h3, h4{
+  font-weight: bold;
+}
+.price{
+  font-size: 13pt !important;
+}
+.breed{
+  font-weight: bold;
+}
