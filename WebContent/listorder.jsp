@@ -11,10 +11,10 @@
 
 <h1>Order List</h1>
 
+
 <%
-String sql = "SELECT O.orderId, O.CustomerId, totalAmount, cname, productId, quantity, price "
-		+ "FROM Orders O, Customer C, OrderedProduct OP "
-		+ "WHERE O.customerId = C.customerId and OP.orderid = O.orderId ";
+
+String sql  ="SELECT Order.orderID, Order.accountNum, Order.totalAmount, Account.name, OrderedProduct.productId, OrderedProduct.quantity, OrderedProduct.price FROM Account, OrderedProduct, group5.Order WHERE Order.accountNum=Account.accountNum AND OrderedProduct.orderId=Order.orderID" ;
 
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
@@ -97,6 +97,8 @@ finally
 	}
 }
 %>
+<h1><a href="Mainpage.jsp">Go Back to Home Page.</a><h1>
+
 
 </body>
 </html>
