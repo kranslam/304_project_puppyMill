@@ -11,7 +11,7 @@ import java.text.NumberFormat;
 
 public class getCustomer {
 
-	private static final String SQL_LISTCUST = "SELECT accountNum, name FROM Account";
+	private static final String SQL_LISTCUST = "SELECT accountNum, name, phone, email, accType FROM Account";
 
 	static Connection con;
 	static jdbc load = new jdbc();
@@ -23,16 +23,18 @@ public class getCustomer {
 			con = load.getConnection();
 
 			PreparedStatement statement = con.prepareStatement(SQL_LISTCUST);
-			ResultSet resultSet = statement.executeQuery();
+			ResultSet rst = statement.executeQuery();
 
-			while (resultSet.next()) {
+			while (rst.next()) {
 
 				Account account = new Account();
-				account.setAccountNum(resultSet.getInt("accountNum"));
-				System.out.println(resultSet.getInt("accountNum"));
-				account.setaName(resultSet.getString("name"));
-				System.out.println(resultSet.getString("name"));
-
+				account.setAccountNum(rst.getInt("accountNum"));
+				account.setaName(rst.getString("name"));
+				account.setAccType(rst.getString("accType"));
+				account.setPhone(rst.getInt("phone"));
+				account.setEmail(rst.getString("email"));
+				
+				
 				customers.add(account);
 			}
 
