@@ -1,4 +1,4 @@
-package project;
+package dbGetter;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -30,7 +30,7 @@ public class InsertWarehouse extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try{
 			Connection con = load.getConnection();
@@ -40,7 +40,10 @@ public class InsertWarehouse extends HttpServlet {
 			String provinceState = request.getParameter("provinceState");
 			String postalZIP = request.getParameter("postalZIP");
 			String streetAddress = request.getParameter("streetAddress");
+			
 			String warehouseID = request.getParameter("warehouseID");
+			
+			
 			
 			String AddNewWarehouseAddress ="INSERT INTO Address(addressID, country, provinceState, postalZIP, streetAddress) VALUES(?,?,?,?,?)";
 			PreparedStatement AddNewWarehouseAddresspstmt = con.prepareStatement(AddNewWarehouseAddress);
@@ -49,16 +52,22 @@ public class InsertWarehouse extends HttpServlet {
 			AddNewWarehouseAddresspstmt.setString(3,provinceState);//ProvinceState
 			AddNewWarehouseAddresspstmt.setString(4,postalZIP);//postalZIP
 			AddNewWarehouseAddresspstmt.setString(5,streetAddress);//streetAddress
-			AddNewWarehouseAddresspstmt.executeQuery();
+			AddNewWarehouseAddresspstmt.executeUpdate();
+			
 			String InsertWarehouseSQL = "INSERT INTO Warehouse (warehouseID, addressID) VALUES(?,?)";
 			PreparedStatement InsertWarehouseSQLpstmt = con.prepareStatement(InsertWarehouseSQL);
 			InsertWarehouseSQLpstmt.setString(1, warehouseID);
 			InsertWarehouseSQLpstmt.setString(2, addressID); //addressID is FK to address
-			InsertWarehouseSQLpstmt.executeQuery();
+			InsertWarehouseSQLpstmt.executeUpdate();
+			
+			resp.sendRedirect("Success.html");
+
 			
 		} catch (SQLException ex)
 
 		{
+			resp.sendRedirect("SomethingWentWrong.html");
+
 			System.out.println(ex);
 		}
 		
@@ -68,9 +77,9 @@ public class InsertWarehouse extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request);
+		doGet(request, resp);
 	}
 
 }

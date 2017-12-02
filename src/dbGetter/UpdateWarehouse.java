@@ -1,4 +1,4 @@
-package project;
+package dbGetter;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -31,24 +31,37 @@ public class UpdateWarehouse extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request)
+	protected void doGet(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		try {
+		
+		try{
 			Connection con = load.getConnection();
-			String warehouseID = request.getParameter("warehouseID");
+			String delete = request.getParameter("delete");
 			String addressID = request.getParameter("addressID");
-
-			String UpdateWarehouseSQL = "UPDATE Warehouse SET addressID = ? WHERE warehouseID = ?";
-			PreparedStatement UpdateWarehouseSQLpstmt = con.prepareStatement(UpdateWarehouseSQL);
-			UpdateWarehouseSQLpstmt.setString(1, addressID); // for set
-			UpdateWarehouseSQLpstmt.setString(2, warehouseID); // for where
-			UpdateWarehouseSQLpstmt.executeQuery();
-
-		} catch (SQLException ex)
+			String warehouseID = request.getParameter("warehouseID");
+			
+			if(delete == null){
+				String UpdateWarehouseSQL = "UPDATE Warehouse SET addressID = ? WHERE warehouseID = ?";
+				PreparedStatement UpdateWarehouseSQLpstmt = con.prepareStatement(UpdateWarehouseSQL);
+				UpdateWarehouseSQLpstmt.setString(1, addressID); // for set
+				UpdateWarehouseSQLpstmt.setString(2, warehouseID); // for where
+				UpdateWarehouseSQLpstmt.executeUpdate();
+			}else{
+			String sql = "DELETE FROM Warehouse WHERE warehouseID = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(warehouseID));
+			pstmt.executeUpdate();
+			
+			}
+			
+			resp.sendRedirect("Success.html");
+			
+		}catch (SQLException ex)
 
 		{
+			resp.sendRedirect("SomethingWentWrong.html");
 			System.out.println(ex);
 		}
 		
@@ -58,10 +71,10 @@ public class UpdateWarehouse extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request)
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request);
+		doGet(request, resp);
 	}
 
 }

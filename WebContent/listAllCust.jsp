@@ -10,6 +10,15 @@
 <body>
 
 	<h1>List of All Customers</h1>
+<%
+
+session = request.getSession();
+String admin = (String)session.getAttribute("admin");
+if(admin == null){
+	response.sendRedirect("Mainpage.jsp");
+}
+
+%>
 
 
 	<%
@@ -51,6 +60,9 @@
 	%>
 	<h1>
 		<a href="Mainpage.jsp">Go Back to Home Page.</a>
+		<h1>
+		<h1>
+		<a href="adminPage.jsp">Go Back to Administrator Page.</a>
 		<h1>
 </body>
 </html>

@@ -10,27 +10,26 @@
 <body>
 
 <h1>Order List</h1>
+
+
 <%
 
 session = request.getSession();
-String admin = (String)session.getAttribute("admin");
-if(admin == null){
-	response.sendRedirect("Mainpage.jsp");
-}
 
-%>
+String accountNum = (String)session.getAttribute("userId");
 
-
-<%
-
-String sql  ="SELECT Order.orderID, Order.accountNum, Order.totalAmount, Account.name, OrderedProduct.productId, OrderedProduct.quantity, OrderedProduct.price FROM Account, OrderedProduct, group5.Order WHERE Order.accountNum=Account.accountNum AND OrderedProduct.orderId=Order.orderID" ;
+String sql  ="SELECT Order.orderID, Order.accountNum, Order.totalAmount, Account.name, OrderedProduct.productId, OrderedProduct.quantity, OrderedProduct.price FROM Account, OrderedProduct, group5.Order WHERE Account.accountNum = ? AND Order.accountNum=Account.accountNum AND OrderedProduct.orderId=Order.orderID" ;
 
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
 try 
 {	
 	getConnection();
-	ResultSet rst = con.createStatement().executeQuery(sql);		
+	
+	PreparedStatement pstmt = con.prepareStatement(sql);
+	pstmt.setInt(1, Integer.parseInt(accountNum));
+	
+	ResultSet rst = pstmt.executeQuery();		
 	out.println("<table class=\"table\" border=\"1\">");
 	out.print("<tr><th>Order Id</th><th>Customer Id</th><th>Customer Name</th>");
 	out.println("<th>Total Amount</th></tr>");

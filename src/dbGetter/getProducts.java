@@ -18,6 +18,7 @@ public class getProducts {
 	int witch = 0;
 
 	private static String SQL = "SELECT * FROM Product";
+	final String glob = "Select * from Product";
 
 	static Connection con;
 	static jdbc load = new jdbc();
@@ -81,13 +82,18 @@ public class getProducts {
 		this.category = category;
 		this.name = name;
 		
+		SQL=glob;
+		
 		System.out.println("This is tester class:");
 		System.out.println(name);
 		System.out.println(category);
 		
 		
 		hasNameParam = name != null && !name.equals("");
-		hasCategoryParam = category != null && !category.equals("") ;
+		hasCategoryParam = category != null && !category.equals("") && !category.equals("All");
+		
+		System.out.println(hasCategoryParam);
+		
 		String sql = "";
 
 		if (hasNameParam && hasCategoryParam) {

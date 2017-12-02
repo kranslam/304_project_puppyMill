@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
 
 /**
  * Servlet implementation class loginServlet
@@ -37,6 +36,8 @@ public class loginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		
+		
 		System.out.print(request.getParameterNames());
 		System.out.print(request.getParameter("name"));
 		System.out.print(request.getParameter("password"));

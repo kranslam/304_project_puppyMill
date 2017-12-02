@@ -32,37 +32,51 @@ public class UpdateCustomer extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try{
 			Connection con = load.getConnection();
+			String delete = request.getParameter("delete");
 			String phone = request.getParameter("phone");
 			String email = request.getParameter("email");
 			String newpassword = request.getParameter("password");
 			String accountNum = request.getParameter("accountNum");
+			String accType = request.getParameter("accType");
+			String empID = request.getParameter("empID");
 			
-			
-			String UpdateCustomerSQL = "UPDATE Account SET phone = ?, email = ?, password = ? WHERE accountNum = ?";
+			if(delete == null){
+				
+			String UpdateCustomerSQL = "UPDATE Account SET phone = ?, email = ?, password = ?, accType = ?, empID = ? WHERE accountNum = ?";
 			PreparedStatement UpdateCustomerSQLpstmt = con.prepareStatement(UpdateCustomerSQL);
 			UpdateCustomerSQLpstmt.setString(1, phone);//for phone
 			UpdateCustomerSQLpstmt.setString(2, email);//for email
 			UpdateCustomerSQLpstmt.setString(3, newpassword);//for pass
-			UpdateCustomerSQLpstmt.setString(4, accountNum);//for WHERE accountNum
-			UpdateCustomerSQLpstmt.executeQuery();
+			UpdateCustomerSQLpstmt.setString(4, accType);//for WHERE accountNum
+			UpdateCustomerSQLpstmt.setString(5, empID);//for WHERE accountNum
+			UpdateCustomerSQLpstmt.setString(6, accountNum);//for WHERE accountNum
+			UpdateCustomerSQLpstmt.executeUpdate();
+			}else{
+			String sql = "DELETE FROM Account WHERE accountNum = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(accountNum));
+			pstmt.executeUpdate();
+			
+			}
+			
+			resp.sendRedirect("Success.html");
+
+			
 		}catch (SQLException ex)
 
 		{
+			resp.sendRedirect("SomethingWentWrong.html");
 			System.out.println(ex);
 		}
 		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request) throws ServletException, IOException {
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request);
+		doGet(request, response);
 	}
-
 }

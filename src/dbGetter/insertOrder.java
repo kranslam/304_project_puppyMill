@@ -42,12 +42,11 @@ public class insertOrder extends HttpServlet {
 
 		
 		
-		String InsertOrderSQL = "INSERT INTO Order (orderID, accountNum, totalAmount VALUES (?,?,?)";
+		String InsertOrderSQL = "INSERT INTO Order (accountNum, totalAmount VALUES (?,?)";
 	
 		PreparedStatement InsertOrderSQLpstmt = con.prepareStatement(InsertOrderSQL);
-		InsertOrderSQLpstmt.setString(1, orderID);
-		InsertOrderSQLpstmt.setString(2, customerID);
-		InsertOrderSQLpstmt.setString(3, totalAmount);
+		InsertOrderSQLpstmt.setString(1, customerID);
+		InsertOrderSQLpstmt.setString(2, totalAmount);
 
 		InsertOrderSQLpstmt.executeQuery();
 

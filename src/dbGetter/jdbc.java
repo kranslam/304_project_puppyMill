@@ -3,12 +3,12 @@ package dbGetter;
 import java.sql.*;
 
 public class jdbc {
-//	 private String url = "jdbc:mysql://localhost/shipment";
-//	 private String uid = "root";
-//	 private String pw = "password";
-	private String url = "jdbc:mysql://cosc304.ok.ubc.ca/group5";
-	private String uid = "group5";
-	private String pw = "group5";
+	 private String url = "jdbc:mysql://localhost/shipment";
+	 private String uid = "root";
+	 private String pw = "password";
+//	private String url = "jdbc:mysql://cosc304.ok.ubc.ca/group5";
+//	private String uid = "group5";
+//	private String pw = "group5";
 	// Connection
 	private Connection con = null;
 
