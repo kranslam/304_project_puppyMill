@@ -38,6 +38,8 @@ public class listProducts extends HttpServlet {
        String name = request.getParameter("breed");
        String category = request.getParameter("category");
        
+//       System.out.println("name: " + name);
+//       System.out.println("category: " + category);
        
     	try {
     		dfd.chooseSql(name, category);

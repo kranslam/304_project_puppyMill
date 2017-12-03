@@ -15,7 +15,7 @@ if (productList == null)
 
      
     
-String id = request.getParameter("id");
+String id = request.getParameter("productId");
 String breed = request.getParameter("breed");
 String price = request.getParameter("price");
 Integer quantity = new Integer(1);

@@ -21,12 +21,12 @@ import beans.Product;
 /**
  * Servlet implementation class getSpecificProduct
  */
-@WebServlet("/getSpecificProduct")
+@WebServlet("/getSpecificProduct.json")
 public class getSpecificProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String sql = "SELECT * FROM Product WHERE productID = ?";
 	Connection con;
-	jdbc load = new jdbc();
+	static jdbc load = new jdbc();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -46,9 +46,11 @@ public class getSpecificProduct extends HttpServlet {
 		List<Product> products = new ArrayList<Product>();
 		
 		try {
+			con = load.getConnection();
 		String productId = request.getParameter("productId");
-		
-		
+		if (productId == null || productId == "") {productId = "-1";}
+
+		String sql = "SELECT * FROM Product WHERE productID = ?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, Integer.parseInt(productId));
 		
@@ -56,10 +58,12 @@ public class getSpecificProduct extends HttpServlet {
 		while(rst.next()){
 			Product prod = new Product();
 			
+			prod.setPid(Integer.parseInt(productId));
 			prod.setpName(rst.getString("breed"));
 			prod.setPrice(rst.getDouble("price"));
-			prod.setDesc(rst.getString("desc"));
+			prod.setDesc(rst.getString("description"));
 			prod.setImage(rst.getString("picture"));
+			products.add(prod);
 			
 		}
 	

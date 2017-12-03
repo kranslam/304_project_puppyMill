@@ -9,6 +9,7 @@
 function update(newid, newqty)
 {
 	window.location="showcart.jsp?update="+newid+"&newqty="+newqty;
+	
 }
 </script>
 <FORM name="form1">
@@ -21,7 +22,7 @@ ArrayList<Object> product = new ArrayList<Object>();
 String id = request.getParameter("delete");
 String update = request.getParameter("update");
 String newqty = request.getParameter("newqty");
-
+boolean isInt = false;
 // check if shopping cart is empty
 if (productList == null)
 {	out.println("<H1>Your shopping cart is empty!</H1>");
@@ -40,12 +41,19 @@ else
 	
 	// if update isn't null, the user is trying to update the quantity
 	if(update != null && (!update.equals(""))) {
+	
+	
+		if(Integer.parseInt(newqty) < 0 ){
+			product = (ArrayList<Object>) productList.get(update);
+			product.set(3, new Integer(1));
+		}else{
 		if (productList.containsKey(update)) { // find item in shopping cart
 			product = (ArrayList<Object>) productList.get(update);
 			product.set(3, (new Integer(newqty))); // change quantity to new quantity
 		}
 		else {
 			productList.put(id,product);
+		}
 		}
 	}
 
@@ -66,7 +74,7 @@ else
 		out.print("<TR><TD>"+product.get(0)+"</TD>");
 		out.print("<TD>"+product.get(1)+"</TD>");
 
-		out.print("<TD ALIGN=CENTER><INPUT TYPE=\"text\" name=\"newqty"+count+"\" size=\"3\" value=\""
+		out.print("<TD ALIGN=CENTER><INPUT TYPE=\"number\" name=\"newqty"+count+"\" size=\"3\" value=\""
 			+product.get(3)+"\"></TD>");
 		double pr = Double.parseDouble( (String) product.get(2));
 		int qty = ( (Integer)product.get(3)).intValue();
@@ -95,7 +103,7 @@ else
 session.setAttribute("productList", productList);
 // give the customer the option to add more items to their shopping cart
 %>
-<H2><A HREF="listprod.jsp">Continue Shopping</A></H2>
+<H2><A HREF="Mainpage.jsp">Continue Shopping</A></H2>
 </FORM>
 </BODY>
 </HTML> 

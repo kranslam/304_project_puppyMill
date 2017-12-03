@@ -17,7 +17,7 @@ import beans.Product;
 /**
  * Servlet implementation class listTop5
  */
-@WebServlet("/listTop5")
+@WebServlet("/listTop5.json")
 public class listTop5 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,7 +35,6 @@ public class listTop5 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try{
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		getTop5 dfd = new getTop5();
 		

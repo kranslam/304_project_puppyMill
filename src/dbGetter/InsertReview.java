@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class InsertReview
  */
-@WebServlet("/InsertReview")
+@WebServlet("/InsertReview.jsp")
 public class InsertReview extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	jdbc load = new jdbc();
@@ -40,19 +44,35 @@ public class InsertReview extends HttpServlet {
 			    String date = request.getParameter("date");
 			    String review = request.getParameter("review");
 
-			
-		    String InsertReviewSQL = "INSERT INTO Review (productID, accountNum, date, review) VALUES(?,?,?,?,?)";
+			    Date jk = new Date();
+			    
+			    String fuckme = jk.getDate() + "";
+			    
+			    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			    //Date myDate = formatter.parse(fuckme);
+			    
+			   
+			    
+		    String InsertReviewSQL = "INSERT INTO Review (productID, accountNum, date, review) VALUES(?,?,?,?)";
 			PreparedStatement InsertReviewSQLpstmt = con.prepareStatement(InsertReviewSQL);
-			InsertReviewSQLpstmt.setString(1, productID);
-			InsertReviewSQLpstmt.setString(2, accountNum);
-			InsertReviewSQLpstmt.setString(3, date);
+			InsertReviewSQLpstmt.setInt(1, Integer.parseInt(productID));
+			InsertReviewSQLpstmt.setInt(2, Integer.parseInt(accountNum));
+			InsertReviewSQLpstmt.setDate(3, new java.sql.Date(jk.getTime()));
 			InsertReviewSQLpstmt.setString(4, review);
-			InsertReviewSQLpstmt.executeQuery();
+			InsertReviewSQLpstmt.executeUpdate();
+			
+			response.sendRedirect("Product.jsp?id=" + productID);
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				response.sendRedirect("SomethingWentWrong.html");
 				e.printStackTrace();
-			}
+			} 
+//			catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				response.sendRedirect("SomethingWentWrong.html");
+//				e.printStackTrace();
+//			}
 	}
 
 	/**

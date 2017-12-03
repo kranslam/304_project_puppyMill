@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%-- <%
+<%
 
 session = request.getSession();
 String admin = (String)session.getAttribute("admin");
@@ -18,7 +18,7 @@ if(admin == null){
 }
 
 %>
- --%>
+ 
 <h1><a href="listAllCust.jsp">See All Accounts</a><h1>
 <h1><a href="listorder.jsp">Sales Report</a><h1>
 <h1><a href="addProductForm.jsp">Add product</a><h1>

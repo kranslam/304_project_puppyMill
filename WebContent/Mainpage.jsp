@@ -61,6 +61,34 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 <script src="js/login.js"></script>
 
+<%  
+
+String size = request.getParameter("size");
+String search = request.getParameter("search");
+
+String sizeNQ;
+String searchNQ;
+
+if(size == null){
+	size = "All";
+	sizeNQ = size;
+	size = "\"" + size + "\"";
+}else{
+	sizeNQ = size;
+	size = "\"" + size + "\"";
+}
+
+if(search == null){
+	search = "";
+	searchNQ = search;
+	search = "\"" + search + "\"";
+}else{
+	searchNQ = search;
+	search = "\"" + search + "\"";
+}
+
+%>
+
 <div id="myNav" class="overlay">
 
   <div class="overlay-content">
@@ -104,7 +132,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img class="logo" src="images/logo.png" alt="Dispute Bills">
+          <a class="navbar-brand" href="Mainpage.jsp"><img class="logo" src="images/logo.png" alt="Dispute Bills">
           </a>
         </div>
         <div id="navbar3" class="navbar-collapse collapse">
@@ -119,22 +147,27 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Medium</a></li>
-                <li><a href="#">Large</a></li>
+              	<li><a href="Mainpage.jsp?size=All&search=<%= searchNQ %>">All</a></li>
+              	<li class="divider"></li>
+                <li><a href="Mainpage.jsp?size=Medium&search=<%= searchNQ %>">Medium</a></li>
+                <li><a href="Mainpage.jsp?size=Large&search=<%= searchNQ %>">Large</a></li>
                 <li class="divider"></li>
-                <li><a href="MainpageSpecial.html">Special</a></li>
+                <li><a href="Mainpage.jsp?size=Large&search=<%= searchNQ %>">Special</a></li>
               </ul>
             </li>
             <li class="dropdown account">
               <a href="#" class="dropdown-toggle userDisplay" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Profile</a></li>
+                <li><a href="listOrderCustomer.jsp">List Orders</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Log out</a></li>
+                <li><a href="logout.jsp">Log out</a></li>
               </ul>
             </li>
             <li class="loginOption"><a href="#" onclick="openNav()">Login</a></li>
-            <li><a href="#">Shopping Cart</a></li>
+            <li><a href="showcart.jsp">Shopping Cart</a></li>
+            <li><a href="NewAccount.html" class="newAccount">Create Account</a></li>
+            <li><a href="adminPage.jsp" class="adminPortal" style="display: none !important;">Admin Portal</a></li>
+            
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -241,7 +274,7 @@ var currentPage = 1;
 
 	String userId = (String)session.getAttribute("userId");
 	String username = (String)session.getAttribute("name");
-	String admin = (String)session.getAttribute("admin");
+	String admin = (String)session.getAttribute("admin"); //Administrator or null
 
 
 %>
@@ -252,25 +285,48 @@ function setUser(){
 	var username = "<%= username %>";
 	var admin = "<%= admin %>";
 	
-	console.log(admin);
-	console.log(userId);
-	console.log(username);
+	//console.log(admin);
+	//console.log(userId);
+	//console.log(username);
 	if(userId == "null" || username == "null"){
 		notLoggedIn();
 	}else{
 		loggedIn(username);
 	}
 	
+	if(admin != "null"){
+		adminPortal();
+	}
+	
+}
+
+function adminPortal(){
+	
+	$(".adminPortal").attr("style", "");
 }
 
 function notLoggedIn(){
 	$(".account").attr("style", "display: none !important;");
+
+	
 }
 
 function loggedIn(username){
 	$(".loginOption").attr("style", "display: none !important;");
+	username = escapeHtml(username);
 	$(".userDisplay").html(username + '<span class="caret"></span>');
+	$(".newAccount").attr("style", "display: none !important;");
+
 }
+
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
 
 $(document).ready(function(){
 
@@ -282,16 +338,17 @@ $(document).ready(function(){
 })
 
 function getDoggos(){
-  $.post( "allProducts.json", { "category": "Special", "breed":""}, function(result){
-    // console.log(result);
+  	console.log("size: " + <%= size %>);
+	$.post( "allProducts.json", { "category": <%= size %>, "breed": <%= search %>}, function(result){
+   
     // console.log(result);
     // currentPage = 2;
     dogsPerPage = 10;
     // result = JSON.parse(result);
-    console.log(result.length + "length");
+    //console.log(result.length + "length");
     totalPage = Math.ceil(result.length/dogsPerPage);
     generatePageNav(currentPage, totalPage);
-    console.log(totalPage + "fdsf");
+    //console.log(totalPage + "fdsf");
     // console.log(totalPage);
     // console.log(doggo.length);
     var maxIndex = currentPage*dogsPerPage;
@@ -300,7 +357,7 @@ function getDoggos(){
     }
     clearProducts();
     for(i = (currentPage - 1)*dogsPerPage; i < maxIndex; i++){
-      console.log(i);
+      //console.log(i);
       generateListings(result[i]);
     }
     initNavButtons();
@@ -316,8 +373,9 @@ function getDoggos(){
 }
 
 function getPopularDoggos(){
-  $.post( "json/getSlides.json", {"category": "medium"}, function(result){
-    // console.log(result);
+  $.post( "listTop5.json", function(result){
+	  console.log("sss");
+    console.log(result);
     // var popDoggo = JSON.parse(result);
     $.each(result, function(i, dog){
       generateSlides(i, dog);
@@ -335,15 +393,15 @@ function clearProducts(){
 }
 
 function generateListings(dog){
-  $("#outerDiv").append('<div class="dogContainer displayInline"><div class="row fillHeight"><div class="fillWidth fillHeight"><div class="thumbnail fillHeight"><img src="' + dog["image"] + '" class="dogImage" alt="..."><div class="caption"><h4>' + dog["pName"] + '</h4><p>Only $' + dog["price"] + '!</p><p><a href="Product.html?id=' + dog["id"] + '" class="btn btn-primary" role="button" style="margin-bottom:4px;white-space: normal;">Adopt Me!</a></p></div></div></div></div></div>');
+  $("#outerDiv").append('<div class="dogContainer displayInline"><div class="row fillHeight"><div class="fillWidth fillHeight"><div class="thumbnail fillHeight"><img src="' + dog["image"] + '" class="dogImage" alt="..."><div class="caption"><h4>' + escapeHtml(dog["pName"]) + '</h4><p>Only $' + dog["price"] + '!</p><p><a href="Product.jsp?id=' + dog["pid"] + '" class="btn btn-primary" role="button" style="margin-bottom:4px;white-space: normal;">Adopt Me!</a></p></div></div></div></div></div>');
   // console.log(dog["image"]);
 }
 
 function generateSlides(i, dog){
 
   $(".slide"+i).attr("style", "background-image: url('"+dog["image"]+"');");
-  $(".slide"+i+" .carousel-caption a p").html(dog["name"]);
-  $(".slide"+i+" .carousel-caption a").attr("href", "Product.html?id=" + dog["id"]);
+  $(".slide"+i+" .carousel-caption a p").html("Popular: " + escapeHtml(dog["pName"]));
+  $(".slide"+i+" .carousel-caption a").attr("href", "Product.jsp?id=" + dog["pid"]);
 
   // console.log(dog["image"]);
 }
@@ -356,7 +414,7 @@ function generatePageNav(currentPageNav, totalPageNav){
     $(".pageNav .pagination").append('<li><a href="#" class="prevPage" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>');
   }
 
-  console.log(totalPageNav + "totalPageNav");
+  //console.log(totalPageNav + "totalPageNav");
   for(i = 1; i <= totalPageNav; i++){
     if(i == currentPageNav){
       $(".pageNav .pagination").append('<li class="active"><a href="#">' + i + '</a></li>');
@@ -389,7 +447,8 @@ function initNavButtons(){
   });
 
   $(".search").click(function(){
-    window.location.replace("Mainpagelab.html");
+	  var search = $("#searchBar").val()
+	  window.location.replace("Mainpage.jsp?size=<%= sizeNQ %>&search=" + search);
   });
 
 }

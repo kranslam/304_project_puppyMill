@@ -39,3 +39,9 @@ h2{
 .breed{
   font-weight: bold;
 }
+.picture{
+	width: 100%;
+}
+.hide{
+	display: none !important;
+}

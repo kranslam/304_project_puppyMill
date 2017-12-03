@@ -23,7 +23,7 @@ if(admin == null){
 
 <%
 
-String sql  ="SELECT Order.orderID, Order.accountNum, Order.totalAmount, Account.name, OrderedProduct.productId, OrderedProduct.quantity, OrderedProduct.price FROM Account, OrderedProduct, group5.Order WHERE Order.accountNum=Account.accountNum AND OrderedProduct.orderId=Order.orderID" ;
+String sql  ="SELECT Orders.orderID, Orders.accountNum, Orders.totalAmount, Account.name, OrderedProduct.productId, OrderedProduct.quantity, OrderedProduct.price FROM Account, OrderedProduct, group5.Orders WHERE Orders.accountNum=Account.accountNum AND OrderedProduct.orderId=Orders.orderID" ;
 
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
