@@ -5,8 +5,8 @@ import java.sql.*;
 public class jdbc {
 
 	private String url = "jdbc:mysql://cosc304.ok.ubc.ca/group5";
-	private String uid = "group5";
-	private String pw = "group5";
+	private String uid = "";
+	private String pw = "";
 	// Connection
 	private Connection con = null;
 
